@@ -8,33 +8,32 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using OAA.Data;
 using System;
 
-namespace OAA.Data.Migrations
+namespace OAA.Web.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180428072635_AddNameAlbumInTrack")]
-    partial class AddNameAlbumInTrack
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "2.0.3-rtm-10026");
 
             modelBuilder.Entity("OAA.Data.Album", b =>
                 {
-                    b.Property<Guid>("AlbumId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("ArtistId");
 
                     b.Property<string>("Cover");
 
-                    b.Property<string>("NameAlbum");
+                    b.Property<string>("Name");
 
                     b.Property<string>("NameArtist");
 
-                    b.HasKey("AlbumId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ArtistId");
 
@@ -43,7 +42,7 @@ namespace OAA.Data.Migrations
 
             modelBuilder.Entity("OAA.Data.Artist", b =>
                 {
-                    b.Property<Guid>("ArtistId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Biography");
@@ -52,14 +51,14 @@ namespace OAA.Data.Migrations
 
                     b.Property<string>("Photo");
 
-                    b.HasKey("ArtistId");
+                    b.HasKey("Id");
 
                     b.ToTable("Artist");
                 });
 
             modelBuilder.Entity("OAA.Data.Similar", b =>
                 {
-                    b.Property<Guid>("SimilarId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("ArtistId");
@@ -68,7 +67,7 @@ namespace OAA.Data.Migrations
 
                     b.Property<string>("Photo");
 
-                    b.HasKey("SimilarId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ArtistId");
 
@@ -77,7 +76,7 @@ namespace OAA.Data.Migrations
 
             modelBuilder.Entity("OAA.Data.Track", b =>
                 {
-                    b.Property<Guid>("TrackId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("AlbumId");
@@ -90,7 +89,7 @@ namespace OAA.Data.Migrations
 
                     b.Property<string>("NameAlbum");
 
-                    b.HasKey("TrackId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AlbumId");
 

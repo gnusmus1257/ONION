@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using OAA.Data;
 using System;
 
-namespace OAA.Data.Migrations
+namespace OAA.Web.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180502065337_AddBaseEntity")]
-    partial class AddBaseEntity
+    [Migration("20180520121856_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
+                .HasAnnotation("ProductVersion", "2.0.3-rtm-10026");
 
             modelBuilder.Entity("OAA.Data.Album", b =>
                 {
