@@ -1,0 +1,52 @@
+﻿@model OAA.Data.Album
+@{
+    ViewData["Title"] = "GetAlbum";
+}
+
+
+<div class="container">
+
+
+    <h2 class="text-center">@Model.Name</h2>
+
+    <div class="col-md-4" style="padding: 0px; margin: 0px;">
+        <img src="@Model.Cover" style="border-radius: 190px; margin: 15px;" />
+        <h3 class="text-center">@Model.NameArtist</h3>
+    </div>
+
+    <div class="col-md-8" style="padding: 0px; margin: 0px; ">
+        @foreach (var track in Model.Tracks)
+        {
+            <div class="text-right btn btn-default" style="display: block">
+                @track.Name
+                @if (track.Link != null)
+                {
+                    <div>
+                        <audio controls id="audio">
+                            <source src="@track.Link" type="audio/mp3" />                            
+                        </audio>
+                    </div>
+                }
+                else
+                {
+                    <button id="@track.Id" class="btn btn-default add">
+                        Add mp3 file
+                    </button>
+                }
+                <input type="hidden" value="@track.Id" />
+            </div>
+            @using (Html.BeginForm("AddFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="@track.Id invis">
+                    <input type="hidden" value="@track.Id" name="Id" />
+                    <input type="hidden" value="@track.Name" name="Name" />
+                    <input type="hidden" value="@track.AlbumId" name="AlbumId" />
+                    <input type="file" name="File" /><br>
+                    <input type="submit" value="Загрузить" />
+                </div>
+
+            }
+        }
+
+    </div>
+</div>
