@@ -15,8 +15,8 @@ namespace OAA.Web
                 .AddJsonFile("appsettings.json")
                 .Build();
             var builder = new DbContextOptionsBuilder<ApplicationContext>();
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            builder.UseSqlServer(connectionString);
+            var connectionString = configuration.GetConnectionString("NpgConnection");
+            builder.UseNpgsql(connectionString, b => b.MigrationsAssembly("OAA.Web"));
             return new ApplicationContext(builder.Options);
         }
     }

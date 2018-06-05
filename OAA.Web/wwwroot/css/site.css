@@ -49,3 +49,15 @@ a:hover{
 .page-active {
     display: block;
 }
+
+.artist-list {
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    transition: box-shadow .2s ease-in-out;
+}
+
+.artist-list:hover {
+    border-radius: 5px;
+    box-shadow: 0 4px 5px rgba(0,0,0,.1);
+    transition: box-shadow .2s ease-in-out;
+}
