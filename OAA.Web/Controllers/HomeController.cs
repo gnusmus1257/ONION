@@ -149,10 +149,29 @@ namespace OAA.Web.Controllers
         {
             var nameArtistForRequest = nameArtist.Replace(" ", "+");
             var nameAlbumForRequest = nameAlbum.Replace(" ", "+");
+            try {
+                var listTrackInDb = trackService.GetAll().Where(a => a.AlbumId == albumService.Get(nameAlbum).Id);
+                if (listTrackInDb.Count() == 0)
+                {
+                    Album alb = albumService.GetAll().Where(a => a.Name == nameAlbum).FirstOrDefault(b => b.NameArtist == nameArtist);
 
-            var listTrackInDb = trackService.GetAll().Where(a => a.AlbumId == albumService.Get(nameAlbum).Id);
-            if (listTrackInDb.Count() == 0)
-            {
+                    Album album = albumService.GetAlbum(nameArtistForRequest, nameAlbumForRequest);
+                    var artistId = artistService.Get(nameArtist).Id;
+                    foreach (Track track in album.Tracks)
+                    {
+                        track.AlbumId = alb.Id;
+                        track.NameAlbum = nameAlbum;
+                        trackService.Create(track);
+                    }
+                    albumService.Update(alb);
+                    return View(album);
+                }
+                else
+                {
+                    return View(albumService.GetAll().Where(a => a.Name == nameAlbum).FirstOrDefault(b => b.NameArtist == nameArtist));
+                }
+            }
+            catch {
                 Album alb = albumService.GetAll().Where(a => a.Name == nameAlbum).FirstOrDefault(b => b.NameArtist == nameArtist);
 
                 Album album = albumService.GetAlbum(nameArtistForRequest, nameAlbumForRequest);
@@ -166,10 +185,8 @@ namespace OAA.Web.Controllers
                 albumService.Update(alb);
                 return View(album);
             }
-            else
-            {
-                return View(albumService.GetAll().Where(a => a.Name == nameAlbum).FirstOrDefault(b => b.NameArtist == nameArtist));
-            }
+
+
 
         }
 
@@ -184,7 +201,7 @@ namespace OAA.Web.Controllers
             if (model.File != null)
             {
                 string path = model.File.FileName;
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/tracks/" + path, FileMode.Create))
                 {
                     model.File.CopyToAsync(fileStream);
                 }
@@ -194,7 +211,7 @@ namespace OAA.Web.Controllers
                     Id = model.Id,
                     Name = model.Name,
                     AlbumId = model.AlbumId,
-                    Link = "http://localhost:52537/tracks/" + path,
+                    Link = "http://localhost:52528/tracks/" + path,
                     NameAlbum = album.Name
                 };
                 trackService.Delete(track);
