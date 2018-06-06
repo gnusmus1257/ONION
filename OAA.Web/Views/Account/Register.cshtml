@@ -1,0 +1,39 @@
+﻿@model OAA.Web.Models.RegisterModel
+<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post" class="form-horizontal">
+    
+    <div class="form-group">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="form-group materail-input-block materail-input-block_primary materail-input_slide-line">
+                <input asp-for="Email" class="form-control materail-input" placeholder="Email">
+                <span asp-validation-for="Email" class="materail-input-block__line"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="form-group materail-input-block materail-input-block_primary materail-input_slide-line">
+                <input asp-for="Password" class="form-control materail-input" placeholder="Password">
+                <span asp-validation-for="Password" class="materail-input-block__line"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="form-group materail-input-block materail-input-block_primary materail-input_slide-line">
+                <input asp-for="PasswordConfirm" class="form-control materail-input" placeholder="Confirm Password">
+                <span asp-validation-for="PasswordConfirm" class="materail-input-block__line"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+            <button type="submit" class="btn material-btn material-btn_primary">Register</button>
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </div>
+
+</form>
+

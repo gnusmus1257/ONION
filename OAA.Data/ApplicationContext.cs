@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OAA.Data.Map;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using OAA.Data.Models;
 
 namespace OAA.Data
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext<User>
     {
         //public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         //{
@@ -19,13 +22,14 @@ namespace OAA.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
-            new ArtistMap(modelBuilder.Entity<Artist>());
-            new AlbumMap(modelBuilder.Entity<Album>());
-            new TrackMap(modelBuilder.Entity<Track>());
-            new SimilarMap(modelBuilder.Entity<Similar>());
+            base.OnModelCreating(builder);
+            new ArtistMap(builder.Entity<Artist>());
+            new AlbumMap(builder.Entity<Album>());
+            new TrackMap(builder.Entity<Track>());
+            new SimilarMap(builder.Entity<Similar>());
+            new UserMap(builder.Entity<User>());
         }
     }
 }

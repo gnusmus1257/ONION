@@ -5,11 +5,12 @@ using System.Text;
 
 namespace OAA.Repo.Intarfaces
 {
-    public interface IRepoForUser<T> where T : User
+    public interface IRepository<T> where T : BaseEntity
     {
         IEnumerable<T> GetAll();
         void Create(T item);
         void Update(T item);
         void Delete(T item);
+        IEnumerable<T> GetAlbumByName(string nameArtist);
     }
 }

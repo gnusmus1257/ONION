@@ -38,7 +38,6 @@ a {
 }
 
 .container {
-    margin-top: 20px;
 }
 
 .page {
@@ -52,6 +51,8 @@ a {
 .artist {
     width: 90%;
     margin: 5%;
+    margin-top: 0px;
+    display: inline-block;
 }
 
 .artist-list {
@@ -60,6 +61,7 @@ a {
     transition: box-shadow .2s ease-in-out;
     margin: 20px;
     padding: 0px;
+
 }
 
 .artist-list > h4 {

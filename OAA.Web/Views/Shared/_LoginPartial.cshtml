@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using OAA.Data.Models
+
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="LogOff" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right material-navbar__nav">
+            <li>
+                <a asp-area="" asp-controller="User" asp-action="Index" class="material-navbar__link" title="Profile">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn material-navbar__link">Log out</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right material-navbar__nav">
+        <li><a asp-area="" asp-controller="Account" class="material-navbar__link" asp-action="Register">Register</a></li>
+        <li><a asp-area="" asp-controller="Account" class="material-navbar__link" asp-action="Login">Log in</a></li>
+    </ul>
+}

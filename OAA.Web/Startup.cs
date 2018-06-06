@@ -9,6 +9,9 @@ using OAA.Service.Interfaces;
 using OAA.Repo.Repositories;
 using OAA.Service.Service;
 using OAA.Repo;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using OAA.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace OAA.Web
 {
@@ -25,13 +28,16 @@ namespace OAA.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUnitOfWorkForUser, UnitOfWorkForUser>();
             services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(Configuration.GetConnectionString("NpgConnection"), b => b.MigrationsAssembly("OAA.Web")));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IRepoForUser<>), typeof(RepoForUser<>));
             services.AddTransient<IArtistService, ArtistService>();
             services.AddTransient<IAlbumService, AlbumService>();
             services.AddTransient<ITrackService, TrackService>();
             services.AddTransient<ISimilarService, SimilarService>();
-
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>();
             services.AddMvc();
 
 
@@ -51,6 +57,8 @@ namespace OAA.Web
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

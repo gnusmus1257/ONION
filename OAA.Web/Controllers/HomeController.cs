@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OAA.Cons;
 using OAA.Data;
 using OAA.Service.Interfaces;
+using OAA.Service.Service;
 using OAA.Web.Models;
 
 namespace OAA.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IArtistService artistService;
@@ -21,15 +24,16 @@ namespace OAA.Web.Controllers
         private readonly ISimilarService similarService;
         private readonly IHostingEnvironment _appEnvironment;
 
-
-
-        public HomeController(IArtistService artistService, IAlbumService albumService, ITrackService trackService, ISimilarService similarService, IHostingEnvironment appEnvironment)
+        private readonly AccountService _accountService;
+        
+        public HomeController(IArtistService artistService, IUnitOfWorkForUser unitOfWork,IAlbumService albumService, ITrackService trackService, ISimilarService similarService, IHostingEnvironment appEnvironment)
         {
             this.artistService = artistService;
             this.albumService = albumService;
             this.trackService = trackService;
             this.similarService = similarService;
             this._appEnvironment = appEnvironment;
+            this._accountService = new AccountService(unitOfWork);
         }
 
         public IActionResult Index(int page = 1)
@@ -151,7 +155,7 @@ namespace OAA.Web.Controllers
             var nameAlbumForRequest = nameAlbum.Replace(" ", "+");
             try {
                 var listTrackInDb = trackService.GetAll().Where(a => a.AlbumId == albumService.Get(nameAlbum).Id);
-                if (listTrackInDb.Count() == 0)
+                if (listTrackInDb != null && !listTrackInDb.Any())
                 {
                     Album alb = albumService.GetAll().Where(a => a.Name == nameAlbum).FirstOrDefault(b => b.NameArtist == nameArtist);
 

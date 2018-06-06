@@ -1,0 +1,51 @@
+﻿@model OAA.Web.Models.LoginModel
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+
+    <section>
+        <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="form-group materail-input-block materail-input-block_primary materail-input_slide-line">
+                        <input asp-for="Email" class="form-control materail-input" placeholder="Email">
+                        <span asp-validation-for="Email" class="materail-input-block__line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="form-group materail-input-block materail-input-block_primary materail-input_slide-line">
+                        <input asp-for="Password" class="form-control materail-input" placeholder="Password">
+                        <span asp-validation-for="Password" class="materail-input-block__line"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class=" material-checkbox-group material-checkbox-group_primary">
+                        <input asp-for="RememberMe" type="checkbox" id="checkbox1" name="checkbox" class="material-checkbox">
+                        <label class="material-checkbox-group__label" for="checkbox1">@Html.DisplayNameFor(m => m.RememberMe)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                    <button type="submit" class="btn material-btn material-btn_primary">Log in</button>
+                    <a asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" class="btn material-btn material-btn_primary">Register</a>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                </div>
+            </div>
+            @*<p>
+                <a asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" class="btn material-btn material-btn_primary">Register as a new user?</a>
+            </p>
+            <p>
+                <a asp-action="ForgotPassword">Forgot your password?</a>
+            </p>*@
+        </form>
+    </section>
+</div>
