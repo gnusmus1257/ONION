@@ -21,7 +21,7 @@ function loadTracks(data) {
         for (var i = 0; i < data.length; i++) {
             var markup = ` 
                     <div class="col-md-10" style="width: 100%">
-                         <button class="text-left btn btn-dafault disable" style="width: 100%; margin: 3px;">${data[i].name}</button>                        
+                         <button class="text-left btn btn-dafault " style="width: 100%; margin: 3px;">${data[i].name}</button>                        
                     </div>
 
             `;

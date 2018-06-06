@@ -44,4 +44,8 @@
   <ItemGroup>
     <None Remove="wwwrootпроект 3.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\site.css" />
+    <None Include="wwwroot\css\style.css" />
+  </ItemGroup>
 </Project>

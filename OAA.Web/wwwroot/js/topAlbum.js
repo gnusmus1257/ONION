@@ -21,7 +21,7 @@ function loadAlbums(data) {
         for (var i = 0; i < data.length; i++) {
             var markup = `
                <a  href="/Home/GetAlbum?nameAlbum=${data[i].nameAlbum}&nameArtist=${data[i].nameArtist}">
-                    <div class="col-md-2" style="height: 350px">
+                    <div class="col-md-2 artist-list">
                         <img src="${data[i].cover}" style="width: 100%" />
                         <h4 class="text-center" style="margin-bottom: 15px">${data[i].nameAlbum}</h4>
                     </div> 

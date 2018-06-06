@@ -57,8 +57,8 @@ function loadData(data) {
             var markup =
                 `
             <a ` + similar + ` href="Home/GetArtist?name=${data[i].name}">
-                <div class="col-md-2">
-                    <img src="${data[i].photo}" style="width: 100%" />
+                <div class="col-md-2 artist-list">
+                    <img src="${data[i].photo}" title=${data[i].name} style="width: 100%; cursor: pointer" />
                     <h4 class="text-center">${data[i].name}</h4>
                 </div>
             </a>
