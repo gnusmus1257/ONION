@@ -61,14 +61,11 @@ a {
     transition: box-shadow .2s ease-in-out;
     margin: 20px;
     padding: 0px;
-
 }
 
-.artist-list > h4 {
-    max-height: 19px;
-
-
-}
+    .artist-list > h4 {
+        max-height: 19px;
+    }
 
     .artist-list:hover {
         border-radius: 5px;
