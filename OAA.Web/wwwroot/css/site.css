@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif!important;
+
 }
 
 
@@ -9,7 +11,6 @@ pre {
     white-space: pre-wrap; /* Since CSS 2.1 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
     word-break: normal !important;
-    font-size: 12px;
 }
 
 
@@ -20,7 +21,7 @@ pre {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     text-transform: none;
     color: #5c5a5a;
 }
@@ -53,22 +54,45 @@ a {
     margin: 5%;
     margin-top: 0px;
     display: inline-block;
+    position: relative;
+    perspective: 1000px;
+}
+
+    .artist > a {
+        text-decoration: none;
+    }
+
+.artist-padding {
+    padding: 1%;
 }
 
 .artist-list {
-    border-radius: 5px;
+    max-height: 450px;
+    border-radius: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,.1);
     transition: box-shadow .2s ease-in-out;
-    margin: 20px;
+    margin: 0px;
     padding: 0px;
+    transition: 0.7s;
 }
 
     .artist-list > h4 {
-        max-height: 19px;
+        height: 30px;
+        text-decoration: none;
     }
 
+    .artist-list > img {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+        .artist-list:hover {
+            box-shadow: 0px 0px 4px 4px rgba(0,0,0,.1);
+            transition: box-shadow .2s ease-in-out;
+        }
+
     .artist-list:hover {
-        border-radius: 5px;
-        box-shadow: 0px 0px 4px 4px rgba(0,0,0,.2);
-        transition: box-shadow .2s ease-in-out;
+        transition: 0.7s;
+        transform: translateZ(7px) translateY(2px);
     }

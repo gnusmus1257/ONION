@@ -32,8 +32,8 @@
                 <img class="photo-artist" src="@Model.Photo" style="width : 90%" />
             </div>
             <div class="col-md-9">
-                <pre>@Model.Biography</pre>
-            </div>
+                <p>@Html.Raw(Model.Biography) </ p >
+</div>
         </section>
         <section id="content2">
             <div class="tracks container"></div>

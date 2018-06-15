@@ -1,15 +1,10 @@
 ﻿@model List<OAA.Data.Artist>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css"/>
-    </environment>
-<link rel="stylesheet" href="~/css/site.css"/>
 
     @foreach (var person in Model)
     {
-        <a href="/Home/GetArtist?name=@person.Name">
-            <div class="col-md-2 artist-list">
+        <a class="col-md-2 artist-padding" href="/Home/GetArtist?name=@person.Name">
+            <div class=" artist-list">
                 <img src="@person.Photo" title = "@person.Name" style="width: 100%; cursor: pointer" />
                 <h4 class="text-center">@person.Name</h4>
             </div>
